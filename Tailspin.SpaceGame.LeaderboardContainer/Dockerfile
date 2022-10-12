@@ -18,7 +18,7 @@ RUN dotnet publish "Tailspin.SpaceGame.LeaderboardContainer.csproj" -c Release -
 
 FROM base AS final
 WORKDIR /app
-ENV ASPNETCORE_URLS=http://+:5000
-EXPOSE 5000
+ENV ASPNETCORE_URLS=http://+:8080
+EXPOSE 8080
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "Tailspin.SpaceGame.LeaderboardContainer.dll"]
