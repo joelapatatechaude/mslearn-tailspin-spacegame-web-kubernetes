@@ -1,15 +1,14 @@
 FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
 WORKDIR /app
-#EXPOSE 80
-#ENV ASPNETCORE_URLS=http://+:5001
-#EXPOSE 5001
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["Tailspin.SpaceGame.Web/Tailspin.SpaceGame.Web.csproj", "Tailspin.SpaceGame.Web/"]
+#COPY ["Tailspin.SpaceGame.Web/Tailspin.SpaceGame.Web.csproj", "Tailspin.SpaceGame.Web/"]
+COPY ["Tailspin.SpaceGame.Web.csproj", "Tailspin.SpaceGame.Web/"]
 
 RUN dotnet restore "Tailspin.SpaceGame.Web/Tailspin.SpaceGame.Web.csproj"
-COPY . .
+#COPY . .
+COPY "." "/src/Tailspin.SpaceGame.Web"
 WORKDIR "/src/Tailspin.SpaceGame.Web"
 RUN dotnet build "Tailspin.SpaceGame.Web.csproj" -c Release -o /app/build
 
